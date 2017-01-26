@@ -1,0 +1,58 @@
+.disk-title {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.disk-info dl dd {
+  margin-left: 10%;
+}
+
+.disk-info dl dt {
+  margin-left: 5%;
+  position: relative;
+}
+
+.disk-info .rate-wrapper {
+  position: absolute;
+  top: 0;
+  right: 5%;
+}
+
+.disk-info .reserve-wrapper {
+  position: absolute;;
+  bottom: 0;
+  right: 5%;
+}
+
+.disk-cover img {
+  max-height: 330px;
+}
+
+.disk-cover {
+  text-align: center;
+}
+
+.disk-cover-wrapper {
+  margin: 0 auto;
+  max-width: 220px;
+}
+
+.rate-area {
+  float: right;
+}
+
+.disk-basic {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.disk-plot {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#remarks {
+  width: 100%;
+  height: 80px;
+  resize: none;
+}

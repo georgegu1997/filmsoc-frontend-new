@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 user-basic">
+      <h2 class="user-name">
+        {{user.full_name}}
+      </h2>
+      <h4 class="user-membership">
+        {{MEMBERSHIP_TABLE[user.member_type]}}
+      </h4>
+      <dl class="dl-horizontal user-desc">
+        <dt>
+          Join at
+        </dt>
+        <dd>
+          {{user.join_at}}
+        </dd>
+        <dt>
+          Membership till
+        </dt>
+        <dd>
+          {{user.expire_at}}
+        </dd>
+        <dt>
+          Regular Film Show
+        </dt>
+        <dd>
+          {{user.rfs_count}} time(s)
+        </dd>
+        <dt>
+          Last login
+        </dt>
+        <dd>
+          {{user.last_login}}
+        </dd>
+        <dt>
+          Login
+        </dt>
+        <dd>
+          {{user.login_count}} time(s)
+        </dd>
+      </dl>
+    </div>
+    <div class="col-md-8 user-disk">
+      <div class="row user-borrow">
+        <h3>You borrow</h3>
+        <p *ngIf="user_borrow.length === 0">
+          None at the moment...
+        </p>
+        <div class="user-disk-cover">
+          <img src="{{settings.resource_base() + 'upload/' + disk.cover_url}}"
+          *ngFor="let disk of user_borrow" alt="{{disk.title_en}}/{{disk.title_ch}}"
+          class="img-reponsive img-thumbnail user-disk-entry" (click)="goToDetail(disk.id)">
+        </div>
+      </div>
+      <div class="row user-reserve">
+        <h3>You reserve</h3>
+        <p *ngIf="user_reserve.length === 0">
+          None at the moment...
+        </p>
+        <div class="user-disk-cover">
+          <img src="{{settings.resource_base() + 'upload/' + disk.cover_url}}"
+          *ngFor="let disk of user_reserve" alt="{{disk.title_en}}/{{disk.title_ch}}"
+          class="img-reponsive img-thumbnail user-disk-entry" (click)="goToDetail(disk.id)">
+        </div>
+      </div>
+      <div class="row user-history">
+        <h3>Your recently borrowed</h3>
+        <p *ngIf="user_history.length === 0">
+          None at the moment...
+        </p>
+        <div class="user-disk-cover">
+          <img src="{{settings.resource_base() + 'upload/' + disk.cover_url}}"
+          *ngFor="let disk of user_history" alt="{{disk.title_en}}/{{disk.title_ch}}"
+          class="img-reponsive img-thumbnail user-disk-entry" (click)="goToDetail(disk.id)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

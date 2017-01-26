@@ -1,0 +1,169 @@
+<div class="modal fade" id="applicationModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-totle">Apply For Ticket(s)</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          <span>
+            Apply For
+          </span>
+          <select [(ngModel)]="applyNumber">
+            <option [value]=1>
+              1
+            </option>
+            <option [value]=2>
+              2
+            </option>
+          </select>
+          <span>Tickets</span>
+        </p>
+        <button class="btn btn-success apply-button"
+        data-dismiss="modal" (click)="apply()">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Free Film Tickets</h1>
+  </div>
+</div>
+
+<div #wrapper class="container" id="wrapper" [class.toggled]="toggled">
+  <div class="spinner-wrapper" *ngIf="initLoading">
+    <loaders-css [loader]="'line-spin-fade-loader'" [loaderClass]="'my-loader'"></loaders-css>
+  </div>
+
+  <div id="sidebar-wrapper" (OnScrollMethod)="nextPage()" ScrollDistance="3" infinite-scroll="InfiniteScroll"
+  [@sidebarAnimation]="" *ngIf="!initLoading">
+    <div class="ticket-list">
+      <div class="ticket-label" *ngFor="let ticket of tickets"
+      (click)="selectedTicket=ticket" [class.selected]="selectedTicket?.id===ticket.id"
+      [@ticketLabel]="">
+        <img class="ticket-cover img-responsive" src="{{ticket?.cover_url.full_url}}" />
+        <div class="ticket-brief-wrapper" align="center">
+          <div class="ticket-title">
+            {{ticket?.title_en}}<br />
+            <hr />{{ticket?.title_ch}}
+          </div>
+        </div>
+        <div class="ticket-state {{ticket.state}}">
+          {{ticket?.state}}
+        </div>
+      </div>
+      <div class="scroll-spinner-wrapper" *ngIf="scrollLoading">
+        <loaders-css [loader]="'line-spin-fade-loader'" [loaderClass]="'my-loader'"></loaders-css>
+      </div>
+    </div>
+  </div>
+  <div #contentWrapper id="content-wrapper"
+  [@contentAnimation]="" *ngIf="!initLoading">
+    <div class="row ticket-detail">
+      <div class="col-xs-12 col-sm-11 col-md-12 col-lg-12">
+        <button type="button" class="btn btn-default visible-xs visible-sm hidden-md hidden-lg navbar-toggle"
+        (click)="toggle()">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <h3>{{selectedTicket?.title_en}}/{{selectedTicket?.title_ch}}</h3>
+        <div class="ticket-cover col-xs-4 col-sm-4 col-md-4 col-lg-4" align="center">
+          <img class="img-responsive" src="{{selectedTicket?.cover_url.full_url}}"/>
+        </div>
+        <div class="ticket-info col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <dl>
+            <dt>
+              Director:
+            </dt>
+            <dd>
+              {{selectedTicket?.director_en}}
+              <span *ngIf="selectedTicket?.director_en">/{{selectedTicket?.director_en}}</span>
+            </dd>
+            <dt>
+              Stars;
+            </dt>
+            <dd>
+              <span *ngFor="let actor of selectedTicket?.actors; let i=index">{{actor}}<span *ngIf="i<selectedTicket?.actors.length-1">,</span> </span>
+              <span *ngIf="selectedTicket?.actors.length<=0">Unknown</span>
+            </dd>
+            <dt>
+              Length:
+            </dt>
+            <dd>
+              {{selectedTicket?.length}} Minutes
+            </dd>
+            <dt>
+              Language:
+            </dt>
+            <dd>
+              {{selectedTicket?.language}}
+            </dd>
+            <dt>
+              Time:
+            </dt>
+            <dd>
+              {{selectedTicket?.show_time}}
+            </dd>
+            <dt>
+              Venue:
+            </dt>
+            <dd>
+              {{selectedTicket?.venue}}
+            </dd>
+            <dt>
+              Apply Deadline:
+            </dt>
+            <dd>
+              {{selectedTicket?.apply_deadline}}
+            </dd>
+            <dt>
+              Quantity:
+            </dt>
+            <dd>
+              {{selectedTicket?.quantity}}
+            </dd>
+          </dl>
+          <div class="apply-button">
+            <button class="btn btn-success apply-button" *ngIf="selectedTicket?.state==='Open' && user.isMember"
+            data-toggle="modal" data-target="#applicationModal">Apply For Ticket(s)</button>
+            <button class="btn btn-default apply-button disabled" *ngIf="selectedTicket?.state!=='Open' && user.isMember">
+            Application is closed</button>
+            <p class="warning-reminder" *ngIf="!(user.isLogin)">
+              Please Log In First.
+            </p>
+            <p class="warning-reminder" *ngIf="!(user.isMember) && user.isLogin">
+              Only Member Can Apply.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <div *ngIf="selectedTicket?.successful_applicant" class="col-xs-12 col-sm-11 col-md-12 col-lg-12">
+        <h5>Successful Applicants</h5>
+        <p>
+          {{selectedTicket?.successful_applicant}}
+        </p>
+      </div>
+      <div class="col-xs-12 col-sm-11 col-md-12 col-lg-12">
+        <h5>Remarks</h5>
+        <p>
+          {{selectedTicket?.remarks}}
+        </p>
+      </div>
+      <div class="col-xs-12 col-sm-11 col-md-12 col-lg-12">
+        <h5>Plot</h5>
+        <div class="col-xs-6 ticket-plot">
+          {{selectedTicket?.desc_en}}
+        </div>
+        <div class="col-xs-6 ticket-plot">
+          {{selectedTicket?.desc_ch}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

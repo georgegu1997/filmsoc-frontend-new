@@ -1,0 +1,38 @@
+.library-search {
+  width: auto;
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#search-box {
+  width: auto;
+}
+
+.search-result-wrapper {
+  height: auto;
+  width: 90%;
+  background-color: #e7e7e7;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.search-result {
+  height: 80px;
+  margin: 5px;
+  min-width: 270px;
+  cursor: pointer;
+}
+
+.search-result img {
+  width: 30%;
+  max-width: 60px;
+  height: inherit;
+  float: left;
+}
+
+.search-result-title {
+  text-align: center;
+}

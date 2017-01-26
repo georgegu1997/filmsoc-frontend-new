@@ -1,0 +1,205 @@
+<div class="modal fade" id="reservationModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-totle">Reserve Disk</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          Please kindly note that we will charge 50HKD per disk as deposit when you check out the disk. The deposit will be refunded when you return the disk in good condition.
+        </p>
+        <hr />
+        <h4>Retrive at Counter</h4>
+        <p>
+          We have counter 17:00-18:30 at LG5 on weekdays. You can retrieve your disk during such time. Please note that your reservation will only be kept for <strong>Two Days</strong>
+        </p>
+        <button class="btn btn-primary" (click)="reserveCounter()" data-dismiss="modal">Reserve</button>
+        <hr />
+        <h4>Or Deliver the Disk</h4>
+        <form (ngSubmit)="reserveDelivery()" #reservationForm="ngForm">
+          <div class="row">
+            <div class="form-group col-xs-6">
+              <label for="hall">Hall(Required)</label>
+              <select class="form-control" id="hall"  name="hall"
+              required
+              [(ngModel)]="form.hall">
+                <option *ngFor="let hall of HALL_LIST" [value]="hall.number">
+                  {{hall.str}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-xs-6">
+              <label for="roomNumber">Room Number(Required)</label>
+              <input class="form-control" id="roomNumber" name="roomNumber"
+              required type="text"
+              [(ngModel)]="form.room"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-xs-12">
+              <label for="remarks">Note</label>
+              <textarea id="remarks" name="remarks"
+              [(ngModel)]="form.remarks"
+              placeholder="Please leave here anything you would like us to know. e.g. Preferred time, Alternative location, etc.."></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="submit" class="btn btn-primary"
+              data-dismiss="modal" (click)="reserveDelivery()"
+              [disabled]="!reservationForm.form.valid">Reserve For Delivery</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="renewModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-totle">Renew Disk</h3>
+      </div>
+      <div class="modal-body">
+        <div>
+          <p>
+            Please kindly note that upon renewal, the due date of the disk will be extended to <strong>7 Days</strong>
+             later counting from <strong>the next day.</strong>
+          </p>
+        </div>
+        <div>
+          <button class="btn btn-primary"
+          data-dismiss="modal" (click)="renew()">Renew</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container disk-detail-wrapper">
+  <button class="btn btn-info back-button" (click)="router.navigate(['library'])">Go Back</button>
+  <div class="row disk-title">
+    <h2>{{disk?.title_en}}/{{disk?.title_ch}}  <small>({{disk?.show_year}})</small></h2>
+  </div>
+  <div class="row disk-basic">
+    <div class="col-xs-4 disk-cover">
+      <div class="disk-cover-wrapper">
+        <img src="{{disk?.cover_url.full_url}}" class="img-responsive img-rounded" />
+      </div>
+    </div>
+    <div class="col-xs-8 disk-info">
+      <dl>
+        <dt>
+          Director
+        </dt>
+        <dd>
+          {{disk?.director_en?disk.director_en:"Unknown"}}<span *ngIf="disk?.director_ch">/{{disk?.director_ch}}</span>
+        </dd>
+        <dt>
+          Stars
+        </dt>
+        <dd>
+          <span *ngFor="let actor of disk?.actors; let i=index">{{actor}}<span *ngIf="i<disk?.actors.length-1">,</span></span>
+          <span *ngIf="disk?.actors.length<=0">Unknown</span>
+        </dd>
+        <dt>
+          Categroy
+        </dt>
+        <dd>
+          {{disk?.category?disk.category:"Unknown"}}
+        </dd>
+        <dt>
+          Tags
+        </dt>
+        <dd>
+          <span *ngFor="let tag of disk?.tags">{{tag}}, </span>
+        </dd>
+        <dt>
+          Length
+        </dt>
+        <dd>
+          {{disk?.length?disk.length:"Unknown"}} minutes
+        </dd>
+        <dt>
+          Call Number
+        </dt>
+        <dd>
+          {{disk?.disk_type}}{{disk?.id}}
+        </dd>
+        <dt>
+          Disk Type
+        </dt>
+        <dd>
+          {{disk?.disk_type_string}}
+        </dd>
+        <dt>
+          Borrowed
+        </dt>
+        <dd>
+          {{disk?.borrow_cnt}} time<span *ngIf="disk?.borrow_cnt>1">s</span>
+        </dd>
+        <dt>
+          Disk State
+        </dt>
+        <dd [style.color]="disk?.avail_type==='Available'?'green':'red'">
+          <strong>{{disk?.avail_type==="ReservedCounter"?"Reserved":disk?.avail_type}}</strong>
+        </dd>
+      </dl>
+      <div class="rate-wrapper">
+        <button class="btn btn-success" (click)="rateUp()"><span class="glyphicon glyphicon-thumbs-up"></span>  {{rate?.ups}}</button>
+        <button class="btn btn-danger" (click)="rateDown()"><span class="glyphicon glyphicon-thumbs-down"></span>  {{rate?.downs}}</button>
+      </div>
+      <div class="reserve-wrapper">
+        <button class="btn btn-info reserve-button"
+        *ngIf="(!(user.user?.id&&disk?.hold_by?.id===user.user?.id)) && (user.isMember && disk?.avail_type ==='Available')"
+        data-toggle="modal" data-target="#reservationModal">
+          Reserve
+        </button>
+        <button class="btn btn-info disabled" *ngIf="(!(user.user?.id&&disk?.hold_by?.id===user.user?.id)) && (!(user.isMember) || disk?.avail_type !=='Available')">
+          Reserve
+        </button>
+        <button class="btn btn-info renew-button" *ngIf="user.user?.id&&disk?.hold_by?.id===user.user?.id"
+        data-toggle="modal" data-target="#renewModal">
+          Renew
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row disk-plot">
+    <div class="col-xs-6">
+      {{disk?.desc_en}}
+    </div>
+    <div class="col-xs-6">
+      {{disk?.desc_ch}}
+    </div>
+  </div>
+  <div class="review-wrapper">
+    <div class="row">
+      <span class="h3">Disk Deviews</span>
+    </div>
+    <div class="review-frame">
+      <div class="review" *ngIf="reviewLoading">
+        Loading Reviews...
+      </div>
+      <div class="review" *ngIf="!reviewLoading && reviews?.length === 0">
+        No Reviews Yet...
+      </div>
+      <div class="review" *ngFor="let review of reviews">
+        <p>
+          <small>@ {{review.create_log.created_at}}</small>
+        </p>
+        <p>
+          {{review.content}}
+        </p>
+      </div>
+      <div class="input-wrapper">
+        <textarea placeholder="Add another review..." [(ngModel)]="newReview"></textarea>
+        <button class="btn btn-success" (click)="submitReview()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

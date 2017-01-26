@@ -1,0 +1,37 @@
+.jumbotron {
+  position: relative;
+  background-image: url('../../asset/img/banner.jpg');
+  position: relative;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  -webkit-background-clip: border;
+  -moz-background-clip: border;
+  background-clip: border-box;
+  -webkit-background-origin: border;
+  -moz-background-origin: border;
+  -o-background-origin: border-box;
+  background-origin: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.jumbotron .haze {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255,255,255,0.7);
+}
+
+.jumbotron .container {
+  position: relative;
+  z-index: 1;
+}
+
+.jumbotron .container .main-title {
+  color: #555;
+}

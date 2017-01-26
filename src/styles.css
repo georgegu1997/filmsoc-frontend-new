@@ -1,0 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
+.loader .line-spin-fade-loader div {
+  background-color: #555;
+}

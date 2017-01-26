@@ -1,0 +1,6 @@
+#compiled files
+*.js
+*.js.map
+
+#node modules
+node_modules/

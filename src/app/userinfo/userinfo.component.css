@@ -1,0 +1,45 @@
+.user-name {
+  text-align: center;
+}
+
+.user-membership {
+  text-align: center;
+}
+
+.user-desc {
+  font-size: 14px;
+}
+
+.user-disk-entry {
+  width: 120px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.user-borrow {
+  min-height: 200px;
+}
+
+.user-reserve{
+  min-height: 200px;
+}
+
+.user-history {
+  min-height: 200px;
+}
+
+.user-desc dt {
+  width: 45%;
+}
+
+.user-desc dd {
+  margin-left: 55%;
+}
+
+.user-disk h3 {
+  margin-left: 20px;
+}
+
+.user-disk p {
+  margin-left: 20px;
+}

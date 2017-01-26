@@ -1,0 +1,11 @@
+<div class="container alert-area">
+  <div class="alert-wrapper" *ngIf="isShow" [@Notification]>
+    <div #alertDOM class="alert alert-dismissible" [ngClass]="setClass()" role="alert">
+      <button type="button" class="close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+      </button>
+      <strong>{{currentNotification.title | uppercase}}</strong> {{currentNotification.content}}
+    </div>
+  </div>
+</div>

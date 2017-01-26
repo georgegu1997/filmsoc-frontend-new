@@ -1,0 +1,35 @@
+<div class="container list-wrapper">
+  <div class="library-list row">
+    <div class="list-item col-lg-4 col-md-4 col-sm-4 col-xs-6 {{disk.avail_type}}"
+    *ngFor="let disk of disks">
+      <a class="thumbnail" (click)="goToDetail(disk)">
+        <img src="{{disk.cover_url.full_url}}" class="img-responsive img-rounded" />
+        <div class="item-brief">
+          <h4>{{disk.title_en}}<br />{{disk.title_ch}}</h4>
+          <h3 class="disk-type">{{disk.avail_type==="ReservedCounter"?"Reserved": disk.avail_type}}</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="pagination-wrapper row">
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <li [class.disabled]="index<=1">
+          <a (click)="prevPage()" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li><a (click)="changePage(index-2)" *ngIf="index-2>0">{{index-2}}</a></li>
+        <li><a (click)="changePage(index-1)" *ngIf="index-1>0">{{index-1}}</a></li>
+        <li class="active"><a>{{index}}</a></li>
+        <li><a (click)="changePage(index+1)" *ngIf="index+1<=total">{{index+1}}</a></li>
+        <li><a (click)="changePage(index+2)" *ngIf="index+2<=total">{{index+2}}</a></li>
+        <li  [class.disabled]="index+1>total">
+          <a (click)="nextPage()" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

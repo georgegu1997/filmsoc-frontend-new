@@ -1,0 +1,38 @@
+<!--
+<div class="library-search">
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Search Disk..."
+  autocomplete="off" spellcheck="false" type="txt"/>
+  <div class="search-result-wrapper">
+    <div *ngFor="let disk of disks | async"
+          class="search-result" >
+      <img src="{{disk.cover_url.full_url}}" class="img-responsive img-rounded"/>
+      <div class="search-result-title">
+        {{disk.title_en}}<br />{{disk.title_ch}}
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<div class="row">
+  <div class="col-lg-offset-3 col-lg-6" class="library-search">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search Disk..."
+      #searchBox id="search-box" (keyup)="search(searchBox.value)"
+      autocomplete="off" spellcheck="false" type="txt">
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-secondary" type="button" data-toggle="tooltip" data-placement="bottom"
+        title="Tips: You may use syntax like 'director:(Nolan)' to search movies whose director is Nolan. Support Terms: fulltext, actor, tag, director."
+        >Search</button>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="search-result-wrapper">
+  <div *ngFor="let disk of disks | async"
+        class="search-result" (click)="router.navigate(['library', disk.id])">
+    <img src="{{disk.cover_url.full_url}}" class="img-responsive img-rounded"/>
+    <div class="search-result-title">
+      {{disk.title_en}}<br />{{disk.title_ch}}
+    </div>
+  </div>
+</div>

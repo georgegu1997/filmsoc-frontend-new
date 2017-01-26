@@ -1,0 +1,268 @@
+<div class="modal fade" id="film_1_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-totle">Plot</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{show?.film_1.desc_en}}
+        </p>
+        <hr />
+        <p>
+          {{show?.film_1.desc_ch}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="film_2_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-totle">Plot</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{show?.film_2.desc_en}}
+        </p>
+        <hr />
+        <p>
+          {{show?.film_2.desc_ch}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="film_3_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-totle">Plot</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{show?.film_3.desc_en}}
+        </p>
+        <hr />
+        <p>
+          {{show?.film_3.desc_ch}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Regular Film Show</h1>
+  </div>
+</div>
+
+
+
+<div class="container main">
+  <div class="spinner-wrapper" *ngIf="initLoading">
+    <loaders-css [loader]="'line-spin-fade-loader'" [loaderClass]="'my-loader'"></loaders-css>
+  </div>
+
+  <div class="row" *ngIf="!initLoading" [@mainAnimation]="">
+    <div class="col-sm-4 col-xs-12 show-wrapper">
+      <div class=" col-xs-6 col-sm-12">
+        <div class="show-cover" align="center">
+          <img class="img-rounded" src="{{show?.film_1.cover_url.full_url}}"
+          (click)="goToDetail(show?.film_1.id)"/>
+        </div>
+        <div class="vote-wrapper col-xs-12" align="center">
+          <p class="votes">{{show?.vote_cnt_1}} vote<span *ngIf="show?.vote_cnt_1>1">s</span></p>
+          <button class="btn btn-success" *ngIf="user.isMember && show?.state==='Open'"
+          (click)="vote(1)">VOTE</button>
+        </div>
+      </div>
+      <div class="show-info col-xs-6 col-sm-12">
+        <h4>{{show?.film_1.title_en}}/{{show?.film_1.title_ch}}<small>({{show?.film_1.show_year}})</small></h4>
+        <dl class="dl-horizontal">
+          <dt>
+            Director:
+          </dt>
+          <dd>
+            {{show?.film_1.director_en}}
+          </dd>
+          <dt>
+            Stars:
+          </dt>
+          <dd>
+            <span *ngFor="let actor of show?.film_1.actors">{{actor}}, </span>
+            <span *ngIf="show?.film_1.actors.length<=0">Unknown</span>
+          </dd>
+          <dt>
+            Category:
+          </dt>
+          <dd>
+            {{show?.film_1.category?show?.film_1.category:"Unknown"}}
+          </dd>
+          <dt>
+            Tags:
+          </dt>
+          <dd>
+            <span *ngFor="let tag of show?.film_1.tags">{{tag}}, </span>
+            <span *ngIf="show?.film_1.actors.length<=0">Unknown</span>
+          </dd>
+          <dt>
+            Length:
+          </dt>
+          <dd>
+            {{show?.film_1.length?show?.film_1.length:"Unknown"}} minutes
+          </dd>
+        </dl>
+        <p><strong>Plot</strong></p>
+        <div class="plot-button-wrapper hidden-sm hidden-md hidden-lg" align="center">
+          <button class="btn btn-info"
+          data-toggle="modal" data-target="#film_1_modal">Show Plot</button>
+        </div>
+        <div class="show-plot">
+          <p>
+            {{show?.film_1.desc_en}}
+          </p>
+          <p>
+            {{show?.film_1.desc_ch}}
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm-4 col-xs-12 show-wrapper">
+      <div class="col-xs-6 col-sm-12">
+        <div class="show-cover" align="center">
+          <img class="img-rounded" src="{{show?.film_2.cover_url.full_url}}"
+          (click)="goToDetail(show?.film_2.id)"/>
+        </div>
+        <div class="vote-wrapper col-xs-12" align="center">
+          <p class="votes">{{show?.vote_cnt_2}} vote<span *ngIf="show?.vote_cnt_2>1">s</span></p>
+          <button class="btn btn-success" *ngIf="user.isMember && show?.state==='Open'"
+          (click)="vote(2)">VOTE</button>
+        </div>
+      </div>
+
+      <div class="show-info col-xs-6 col-sm-12">
+        <h4>{{show?.film_2.title_en}}/{{show?.film_2.title_ch}}<small>({{show?.film_2.show_year}})</small></h4>
+        <dl class="dl-horizontal">
+          <dt>
+            Director:
+          </dt>
+          <dd>
+            {{show?.film_2.director_en}}
+          </dd>
+          <dt>
+            Stars:
+          </dt>
+          <dd>
+            <span *ngFor="let actor of show?.film_2.actors">{{actor}}, </span>
+            <span *ngIf="show?.film_2.actors.length<=0">Unknown</span>
+          </dd>
+          <dt>
+            Category:
+          </dt>
+          <dd>
+            {{show?.film_2.category?show?.film_2.category:"Unknown"}}
+          </dd>
+          <dt>
+            Tags:
+          </dt>
+          <dd>
+            <span *ngFor="let tag of show?.film_2.tags">{{tag}}, </span>
+            <span *ngIf="show?.film_2.actors.length<=0">Unknown</span>
+          </dd>
+          <dt>
+            Length:
+          </dt>
+          <dd>
+            {{show?.film_2.length?show?.film_2.length:"Unknown"}} minutes
+          </dd>
+        </dl>
+        <p><strong>Plot</strong></p>
+        <div class="plot-button-wrapper hidden-sm hidden-md hidden-lg" align="center">
+          <button class="btn btn-info"
+          data-toggle="modal" data-target="#film_2_modal">Show Plot</button>
+        </div>
+        <div class="show-plot">
+          <p>
+            {{show?.film_2.desc_en}}
+          </p>
+          <p>
+            {{show?.film_2.desc_ch}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-xs-12 show-wrapper">
+      <div class="col-xs-6 col-sm-12">
+        <div class="show-cover" align="center">
+          <img class="img-rounded" src="{{show?.film_3.cover_url.full_url}}"
+          (click)="goToDetail(show?.film_3.id)"/>
+        </div>
+        <div class="vote-wrapper col-xs-12" align="center">
+          <p class="votes">{{show?.vote_cnt_3}} vote<span *ngIf="show?.vote_cnt_2>1">s</span></p>
+          <button class="btn btn-success" *ngIf="user.isMember && show?.state==='Open'"
+          (click)="vote(2)">VOTE</button>
+        </div>
+      </div>
+
+      <div class="show-info col-xs-6 col-sm-12">
+        <h4>{{show?.film_3.title_en}}/{{show?.film_3.title_ch}}<small>({{show?.film_3.show_year}})</small></h4>
+        <dl class="dl-horizontal">
+          <dt>
+            Director:
+          </dt>
+          <dd>
+            {{show?.film_3.director_en}}
+          </dd>
+          <dt>
+            Stars:
+          </dt>
+          <dd>
+            <span *ngFor="let actor of show?.film_3.actors">{{actor}}, </span>
+            <span *ngIf="show?.film_3.actors.length<=0">Unknown</span>
+          </dd>
+          <dt>
+            Category:
+          </dt>
+          <dd>
+            {{show?.film_3.category?show?.film_3.category:"Unknown"}}
+          </dd>
+          <dt>
+            Tags:
+          </dt>
+          <dd>
+            <span *ngFor="let tag of show?.film_3.tags">{{tag}}, </span>
+            <span *ngIf="show?.film_3.actors.length<=0">Unknown</span>
+          </dd>
+          <dt>
+            Length:
+          </dt>
+          <dd>
+            {{show?.film_3.length?show?.film_3.length:"Unknown"}} minutes
+          </dd>
+        </dl>
+        <p><strong>Plot</strong></p>
+        <div class="plot-button-wrapper hidden-sm hidden-md hidden-lg" align="center">
+          <button class="btn btn-info"
+          data-toggle="modal" data-target="#film_3_modal">Show Plot</button>
+        </div>
+        <div class="show-plot">
+          <p>
+            {{show?.film_3.desc_en}}
+          </p>
+          <p>
+            {{show?.film_3.desc_ch}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

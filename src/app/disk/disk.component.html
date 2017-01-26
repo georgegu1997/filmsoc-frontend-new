@@ -1,0 +1,84 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1>VCD/DVD Library</h1>
+  </div>
+</div>
+
+<div class="container" id="wrapper" [class.toggled]="toggled">
+  <div id="sidebar-wrapper">
+    <div class="left-panel">
+      <div class="button-wrapper">
+        <h3>Mode</h3>
+        <div class="btn-group-vertical" role="group">
+          <button class="library-button btn btn-info btn-lg"
+          (click)="normal()" [class.active]="listType===LIST_TYPE.NORMAL">Normal</button>
+          <button class="library-button btn btn-info btn-lg"
+          (click)="topPopular()"[class.active]="listType===LIST_TYPE.POPULAR">Top Popular</button>
+          <button class="library-button btn btn-info btn-lg"
+          (click)="topRanked()" [class.active]="listType===LIST_TYPE.RANKED">Top Ranked</button>
+          <button class="library-button btn btn-info btn-lg">Shopping Vote</button>
+        </div>
+        <button class="lucky-button btn btn-success btn-lg"
+        (click)="luckyRandom()">Lucky Random</button>
+        <div class="search-wrapper">
+          <film-disk-search></film-disk-search>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="content-wrapper">
+    <div class="content-spinner-wrapper" *ngIf="contentLoading">
+      <loaders-css [loader]="'line-spin-fade-loader'" [loaderClass]="'my-loader'"></loaders-css>
+    </div>
+    <div class="toggle-wrapper">
+      <button type="button" class="btn btn-default visible-xs visible-sm hidden-md hidden-lg navbar-toggle"
+      (click)="toggle()">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="outlet-wrapper" [style.display]="contentLoading? 'none': 'block'">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+
+<!--
+<div class="container">
+  <div class="row" >
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 left-panel">
+      <div class="wrapper">
+        <film-disk-search></film-disk-search>
+        <div class="search-tips">
+          Tips: You may use syntax like
+          <u>director:(Nolan)</u>
+           to search movies whose director is Nolan. Support Terms: fulltext, actor, tag, director.
+        </div>
+        <div class="library-button">
+          <button><span class="glyphicon glyphicon-pushpin"></span>Shopping Vote</button>
+        </div>
+        <div class="library-button">
+          <button (click)="luckyRandom()"><span class="glyphicon glyphicon-pushpin"></span>Lucky Random</button>
+        </div>
+        <div class="library-button">
+          <button (click)="topPopular()"><span class="glyphicon glyphicon-pushpin"></span>Top Popular</button>
+        </div>
+        <div class="library-button">
+          <button (click)="topRanked()"><span class="glyphicon glyphicon-pushpin"></span>Top Ranked</button>
+        </div>
+      </div>
+    </div>
+    <div class="right-panel col-lg-9 col-md-8 col-sm-8 col-xs-12">
+      <div class="library-list row">
+        <div class="list-item col-lg-3 col-md-4 col-sm-6 col-xs-6" *ngFor="let disk of disks">
+          <a class="thumbnail" (click)="goToDetail(disk)">
+            <img src="{{disk.cover_url.full_url}}" class="img-responsive img-rounded" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
