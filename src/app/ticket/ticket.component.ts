@@ -104,4 +104,8 @@ export class TicketComponent implements OnInit {
 
     }
   }
+
+  trackByTickets(index: number, ticket: Ticket) {
+    return ticket.id;
+  }
 }

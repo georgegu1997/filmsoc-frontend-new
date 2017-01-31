@@ -27,6 +27,7 @@ import { PageNotFoundComponent } from './util/page-not-found.component';
 import { SettingsService } from './settings';
 import { Logger } from './logger';
 import { UserService } from './userinfo/user.service';
+import { HomeService } from './home/home.service';
 import { DiskService } from './disk/disk.service';
 import { DiskSearchService } from './disk/disk-search/disk-search.service';
 //import { DiskDetailService } from './diskdetail/disk-detail.service';
@@ -69,6 +70,7 @@ import { LoadersCssModule } from 'angular2-loaders-css';
   ],
   providers: [
     SettingsService,
+    HomeService,
     DiskService,
     DiskSearchService,
     //DiskDetailService,

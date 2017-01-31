@@ -54,7 +54,7 @@
   <div id="sidebar-wrapper" (OnScrollMethod)="nextPage()" ScrollDistance="3" infinite-scroll="InfiniteScroll"
   [@sidebarAnimation]="" *ngIf="!initLoading">
     <div class="ticket-list">
-      <div class="ticket-label" *ngFor="let ticket of tickets"
+      <div class="ticket-label" *ngFor="let ticket of tickets; trackBy: trackByTickets"
       (click)="selectedTicket=ticket" [class.selected]="selectedTicket?.id===ticket.id"
       [@ticketLabel]="">
         <img class="ticket-cover img-responsive" src="{{ticket?.cover_url.full_url}}" />

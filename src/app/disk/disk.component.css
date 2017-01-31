@@ -137,6 +137,15 @@
   }
 }
 
+@media (max-width: 768px) {
+  #wrapper {
+    min-height: 1200px;
+  }
+
+  #content-wrapper {
+    min-height: 1200px;
+  }
+}
 
 
 #content-wrapper .navbar-toggle {
