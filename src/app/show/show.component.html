@@ -60,7 +60,23 @@
 
 <div class="jumbotron">
   <div class="container">
-    <h1>Regular Film Show</h1>
+    <h1 class="main-title">Regular Film Show</h1>
+    <ul class="main-features">
+      <li>
+        Every Thursday in one of Leature Theaters
+      </li>
+      <li *ngIf="show?.state==='Open'">
+        This Regular Film Show is still in voting
+      </li>
+      <li *ngIf="show?.state==='Pending'">
+        The Voting preiod is finished, And <strong><em>{{this.winnerShow?.title_en}}/{{this.winnerShow?.title_ch}}</em></strong> will be on show.
+      </li>
+      <li *ngIf="show?.remarks">
+        {{show?.remarks}}
+      </li>
+    </ul>
+  </div>
+  <div class="haze">
   </div>
 </div>
 

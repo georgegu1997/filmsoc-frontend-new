@@ -1,8 +1,9 @@
 .jumbotron {
   position: relative;
-  background-image: url('../../asset/img/banner.jpg');
+  background-image: url('assets/img/banner.jpg');
   position: relative;
   height: 300px;
+  text-align: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -24,7 +25,7 @@
   width: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(255,255,255,0.7);
+  background-color: rgba(255,255,255,0.6);
 }
 
 .jumbotron .container {
@@ -33,5 +34,40 @@
 }
 
 .jumbotron .container .main-title {
-  color: #555;
+  color: black;;
+}
+
+.promo-title {
+  margin-bottom: 20px;
+}
+
+.promo-pic {
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  -webkit-background-clip: border;
+  -moz-background-clip: border;
+  background-clip: border-box;
+  -webkit-background-origin: border;
+  -moz-background-origin: border;
+  -o-background-origin: border-box;
+  background-origin: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.promo-pic-rfs {
+  background-image: url('assets/img/rfs_banner.jpg');
+}
+
+.promo-pic-liba {
+  background-image: url('assets/img/liba_banner.jpg');
+}
+
+.promo-pic-fft {
+  background-image: url('assets/img/fft_banner.jpg');
 }

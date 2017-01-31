@@ -1,3 +1,45 @@
+.jumbotron {
+  position: relative;
+  background-image: url('assets/img/fft_banner.jpg');
+  position: relative;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  -webkit-background-clip: border;
+  -moz-background-clip: border;
+  background-clip: border-box;
+  -webkit-background-origin: border;
+  -moz-background-origin: border;
+  -o-background-origin: border-box;
+  background-origin: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.jumbotron .haze {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255,255,255,0.6);
+}
+
+.jumbotron .container {
+  position: relative;
+  z-index: 1;
+}
+
+.jumbotron .container .main-title {
+  color: black;
+}
+
+.jumbotron .container .main-features {
+  font-size: 22px;
+}
+
 #wrapper {
   position: relative;
   height: 800px;

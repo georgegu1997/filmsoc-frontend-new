@@ -13,7 +13,7 @@ import { TicketAnimations } from './ticket.animations';
   moduleId: module.id,
   selector: 'film-ticket',
   templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.css','../scrollbar.css'],
+  styleUrls: ['./ticket.component.css'],
   animations: TicketAnimations,
 })
 
