@@ -9,12 +9,15 @@ import { DiskDetailService } from './disk-detail/disk-detail.service';
 import { DiskSearchComponent } from './disk-search/disk-search.component';
 import { Logger } from '../logger';
 
+import { DiskAnimations } from './disk.animations';
+
 @Component({
   moduleId: module.id,
   selector: 'film-disk',
   templateUrl: './disk.component.html',
   styleUrls: ['./disk.component.css'],
   providers: [DiskListService, DiskDetailService],
+  animations: DiskAnimations,
 })
 
 export class DiskComponent implements OnInit  {

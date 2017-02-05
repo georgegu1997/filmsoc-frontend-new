@@ -106,6 +106,9 @@
   overflow-y: scroll;
   overflow-x: hidden;
   height: auto;
+  /* these two lines are used to solve the unstable view that occurs in the Chrome */
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1.0, 1.0);
 }
 
 #wrapper.toggled #content-wrapper {
@@ -156,14 +159,17 @@
   padding-left: 1em;
   cursor: pointer;
   position: relative;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease;
+  -webkit-transition: transform 0.2s ease;
+  -moz-transition: transform 0.2s ease;
+  -o-transition: transform 0.2s ease;
+  transition: transform 0.2s ease;
   -webkit-transform-origin: 1em center;
   -moz-transform-origin: 1em center;
   -o-transform-origin: 1em center;
   transform-origin: 1em center;
+  /* these two lines are used to solve the unstable view that occurs in the Chrome */
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1.0, 1.0);
 }
 
 .ticket-label:hover {
